@@ -1,0 +1,59 @@
+import random  # Import the random module to generate computer's choice
+
+# Step 1: Define valid choices
+choices = ['rock', 'paper', 'scissors']
+
+# Step 2: Initialize scores
+user_score = 0
+computer_score = 0
+round_number = 1
+
+# Step 3: Display welcome message and instructions
+print(" Welcome to the Rock-Paper-Scissors Game!")
+print("Instructions: Type 'rock', 'paper', or 'scissors' to play.\n")
+
+# Step 4: Start game loop
+while True:
+    print(f"\n--- Round {round_number} ---")  # Show current round
+
+    # Step 5: Prompt user for input
+    user_choice = input("Enter your choice (rock/paper/scissors): ").lower()
+
+    # Step 6: Validate user input
+    if user_choice not in choices:
+        print("Invalid input! Please choose 'rock', 'paper', or 'scissors'.")
+        continue  # Skip to next iteration if input is invalid
+
+    # Step 7: Computer makes a random choice
+    computer_choice = random.choice(choices)
+
+    # Step 8: Display choices
+    print(f"You chose: {user_choice}")
+    print(f"Computer chose: {computer_choice}")
+
+    # Step 9: Determine the winner using game logic
+    if user_choice == computer_choice:
+        print("It's a tie!")
+    elif (user_choice == "rock" and computer_choice == "scissors") or \
+         (user_choice == "paper" and computer_choice == "rock") or \
+         (user_choice == "scissors" and computer_choice == "paper"):
+        print("You win this round!")
+        user_score += 1  # Increase user score
+    else:
+        print("You lose this round!")
+        computer_score += 1  # Increase computer score
+
+    # Step 10: Display the updated score
+    print(f"Score => You: {user_score} | Computer: {computer_score}")
+
+    # Step 11: Ask if user wants to play again
+    play_again = input("\nDo you want to play another round? (yes/no): ").lower()
+    if play_again != 'yes':
+        # Step 12: End the game and show final score
+        print("\nFinal Score")
+        print(f"You: {user_score}")
+        print(f"Computer: {computer_score}")
+        print("Thanks for playing!")
+        break  # Exit the loop and end the game
+
+    round_number += 1  # Move to the next round
